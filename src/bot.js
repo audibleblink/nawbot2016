@@ -1,5 +1,6 @@
 import * as XBL from './lib/live'
 import imgSearch from './lib/image_search'
+import * as urbanDict from './lib/urban'
 
 export const respond = (req, res) => {
 
@@ -21,22 +22,28 @@ export const respond = (req, res) => {
       })
   }
 
-  if (keyword == "!ping") {
+  if (keyword === "!ping") {
     replyWith("pong!", res)
   }
 
   if (keyword === "!img") {
-    const query  = message.replace(RegExp(keyword + " "), "")
+    const query = message.replace(RegExp(keyword + " "), "")
     imgSearch(query)
       .then((url) => replyWith(url, res))
       .catch((err) => replyWith(err, res) )
   }
 
   if (keyword === "!gif") {
-    const query  = message.replace(RegExp(keyword + " "), "")
+    const query = message.replace(RegExp(keyword + " "), "")
     imgSearch(query, {fileType: "gif"})
       .then((url) => replyWith(url, res))
       .catch((err) => replyWith(err, res))
+  }
+  
+  if (keyword === "!urban") {
+    const term = message.replace(RegExp(keyword + " "), "")
+    urbanDict.search(term)
+      .then((definition) => replyWith(definition, res))
   }
 }
 

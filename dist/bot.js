@@ -13,6 +13,10 @@ var _image_search = require('./lib/image_search');
 
 var _image_search2 = _interopRequireDefault(_image_search);
 
+var _urban = require('./lib/urban');
+
+var urbanDict = _interopRequireWildcard(_urban);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
@@ -37,7 +41,7 @@ var respond = exports.respond = function respond(req, res) {
     })();
   }
 
-  if (keyword == "!ping") {
+  if (keyword === "!ping") {
     replyWith("pong!", res);
   }
 
@@ -56,6 +60,13 @@ var respond = exports.respond = function respond(req, res) {
       return replyWith(url, res);
     }).catch(function (err) {
       return replyWith(err, res);
+    });
+  }
+
+  if (keyword === "!urban") {
+    var term = message.replace(RegExp(keyword + " "), "");
+    urbanDict.search(term).then(function (definition) {
+      return replyWith(definition, res);
     });
   }
 };
