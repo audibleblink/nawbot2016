@@ -1,0 +1,22 @@
+{
+  "name": "nawbot2016",
+  "version": "1.0.0",
+  "description": "a thing that does fuck-all",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.13.3"
+  },
+  "devDependencies": {
+    "babel": "^6.3.13",
+    "chai": "^3.4.1",
+    "gulp": "^3.9.0",
+    "mocha": "^2.3.4",
+    "superagent": "^1.6.1"
+  },
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js"
+  },
+  "author": "audibleblink",
+  "license": "MIT"
+}
