@@ -6,8 +6,8 @@
   "dependencies": {
     "body-parser": "^1.14.2",
     "express": "^4.13.3",
-    "node-xbox": "^0.1.0",
-    "when": "^3.7.5"
+    "googleapis": "github:audibleblink/google-api-nodejs-client",
+    "node-xbox": "^0.1.0"
   },
   "devDependencies": {
     "babel": "^6.3.13",

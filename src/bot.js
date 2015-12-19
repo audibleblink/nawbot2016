@@ -1,4 +1,5 @@
 import * as XBL from './lib/live'
+import imgSearch from './lib/image_search'
 
 export const respond = (req, res) => {
 
@@ -19,13 +20,31 @@ export const respond = (req, res) => {
         replyWith(new Error(err), res) 
       })
   }
+
+  if (keyword == "!ping") {
+    replyWith("pong!", res)
+  }
+
+  if (keyword === "!img") {
+    const query  = message.replace(RegExp(keyword + " "), "")
+    imgSearch(query)
+      .then((url) => replyWith(url, res))
+      .catch((err) => replyWith(err, res) )
+  }
+
+  if (keyword === "!gif") {
+    const query  = message.replace(RegExp(keyword + " "), "")
+    imgSearch(query, {fileType: "gif"})
+      .then((url) => replyWith(url, res))
+      .catch((err) => replyWith(err, res))
+  }
 }
 
 
-  const replyWith = (body, res) => {
-    console.log("Replying with " + body)
-    res.writeHead(200, {
-      'Content-Type': 'application/json'
-    })
-    res.end(`{"text": "${body}", "unfurl_links": true}`)
-  }
+const replyWith = (body, res) => {
+  console.log("Replying with " + body)
+  res.writeHead(200, {
+    'Content-Type': 'application/json'
+  })
+  res.end(`{"text": "${body}", "unfurl_links": true}`)
+}
