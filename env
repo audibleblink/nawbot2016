@@ -1,0 +1,28 @@
+# dunno. I'll update when I figure it out
+export BOT_ID=
+
+# clan related variables
+export CLAN_ID=
+export TEAM_ID=
+export COD_PASS=
+export COD_USER=
+
+# Needed for the image/gif search
+export GOOGLE_CX=
+export GOOGLE_TOKEN=
+
+export KEEP_DYNO_UP=true
+
+# your token from xboxapi.com. Used for the !live command
+export XBOX_API=
+
+# used for connection to a mongodb in the clanwar module
+export MONGOLAB_URI=
+export MONGO_PW=
+
+export NODE_ENV=production
+
+# Slack variables
+export SLACK_TEAM=
+export SLACK_TOKEN=
+export MIDDLE_THING=
