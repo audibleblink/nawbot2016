@@ -17,8 +17,9 @@ export default function(queryString, options = {}) {
   
   return new Promise((resolve, reject) => {
     customsearch.cse.list(settings, (err, resp) => {
+      debugger
       if (err) {
-        resolve(err)
+        reject(err)
       } else {
         const imageUrl = resp.items[0].pagemap.cse_image[0].src
         resolve(imageUrl)

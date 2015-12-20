@@ -18,8 +18,9 @@ exports.default = function (queryString) {
 
   return new Promise(function (resolve, reject) {
     customsearch.cse.list(settings, function (err, resp) {
+      debugger;
       if (err) {
-        resolve(err);
+        reject(err);
       } else {
         var imageUrl = resp.items[0].pagemap.cse_image[0].src;
         resolve(imageUrl);
