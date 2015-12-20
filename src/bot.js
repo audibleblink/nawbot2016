@@ -38,7 +38,7 @@ export const respond = (req, res) => {
 
   if (keyword === "!gif") {
     const query = message.replace(RegExp(keyword + " "), "")
-    imageSearch(query, {fileType: "gif"})
+    imageSearch(`gif ${query}`)
       .then((url) => replyWith(url, res))
       .catch((err) => replyWith(err, res))
   }

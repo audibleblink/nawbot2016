@@ -56,7 +56,7 @@ var respond = exports.respond = function respond(req, res) {
 
   if (keyword === "!gif") {
     var query = message.replace(RegExp(keyword + " "), "");
-    (0, _image_search2.default)(query, { fileType: "gif" }).then(function (url) {
+    (0, _image_search2.default)('gif ' + query).then(function (url) {
       return replyWith(url, res);
     }).catch(function (err) {
       return replyWith(err, res);
