@@ -20,9 +20,6 @@ From Slack
 !img word
 // return an image based on your search term
 
-!cwfeed on/off
-// Posts victories to your channel during a Call of Duty Clan War
-
 !ping
 // return "Pong!"; mainly for testing
 ```
