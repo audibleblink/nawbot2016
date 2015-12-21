@@ -10,16 +10,12 @@ export const respond = (req, res) => {
     , message = request.text
 
   if (keyword == "!live") {
-    let gamertag = message.replace(RegExp(keyword + " "), "")
+    let gamertag = message.replace(RegExp(`${keyword} `), "")
     XBL.getXuid(gamertag)
       .then(XBL.getPresence)
-      .then((presence) => {
-        return XBL.prepareResponse(presence, gamertag)
-      })
-      .then((response) => { replyWith(response, res) })
-      .catch((err) => { 
-        replyWith(new Error(err), res) 
-      })
+      .then((presence) => XBL.prepareResponse(presence, gamertag))
+      .then((response) => replyWith(response, res))
+      .catch((err) => replyWith(new Error(err), res))
   }
 
 
@@ -29,7 +25,7 @@ export const respond = (req, res) => {
 
 
   if (keyword === "!img") {
-    const query = message.replace(RegExp(keyword + " "), "")
+    const query = message.replace(RegExp(`${keyword} `), "")
     imageSearch(query)
       .then((url) => replyWith(url, res))
       .catch((err) => replyWith(err, res) )
@@ -37,15 +33,15 @@ export const respond = (req, res) => {
 
 
   if (keyword === "!gif") {
-    const query = message.replace(RegExp(keyword + " "), "")
+    const query = message.replace(RegExp(`${keyword} `), "")
     imageSearch(`gif ${query}`)
       .then((url) => replyWith(url, res))
       .catch((err) => replyWith(err, res))
   }
-  
+
   
   if (keyword === "!urban") {
-    const term = message.replace(RegExp(keyword + " "), "")
+    const term = message.replace(RegExp(`${keyword} `), "")
     urbanDict.search(term)
       .then((definition) => replyWith(definition, res))
   }
@@ -54,8 +50,6 @@ export const respond = (req, res) => {
 
 const replyWith = (body, res) => {
   console.log("Replying with " + body)
-  res.writeHead(200, {
-    'Content-Type': 'application/json'
-  })
+  res.writeHead(200, { 'Content-Type': 'application/json' })
   res.end(`{"text": "${body}", "unfurl_links": true}`)
 }

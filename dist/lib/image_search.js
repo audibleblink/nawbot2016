@@ -8,7 +8,6 @@ exports.default = function (queryString) {
   var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
   var url = buildUrl(queryString, options);
-
   return new Promise(function (resolve, reject) {
     request.get(url, function (err, resp, body) {
       if (err) {
@@ -18,6 +17,7 @@ exports.default = function (queryString) {
           var imageUrl = JSON.parse(body).items[0].pagemap.cse_image[0].src;
           resolve(imageUrl);
         } catch (e) {
+          console.log(e);
           resolve("No images found");
         }
       }

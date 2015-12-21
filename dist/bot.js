@@ -30,13 +30,13 @@ var respond = exports.respond = function respond(req, res) {
 
   if (keyword == "!live") {
     (function () {
-      var gamertag = message.replace(RegExp(keyword + " "), "");
+      var gamertag = message.replace(RegExp(keyword + ' '), "");
       XBL.getXuid(gamertag).then(XBL.getPresence).then(function (presence) {
         return XBL.prepareResponse(presence, gamertag);
       }).then(function (response) {
-        replyWith(response, res);
+        return replyWith(response, res);
       }).catch(function (err) {
-        replyWith(new Error(err), res);
+        return replyWith(new Error(err), res);
       });
     })();
   }
@@ -46,7 +46,7 @@ var respond = exports.respond = function respond(req, res) {
   }
 
   if (keyword === "!img") {
-    var query = message.replace(RegExp(keyword + " "), "");
+    var query = message.replace(RegExp(keyword + ' '), "");
     (0, _image_search2.default)(query).then(function (url) {
       return replyWith(url, res);
     }).catch(function (err) {
@@ -55,7 +55,7 @@ var respond = exports.respond = function respond(req, res) {
   }
 
   if (keyword === "!gif") {
-    var query = message.replace(RegExp(keyword + " "), "");
+    var query = message.replace(RegExp(keyword + ' '), "");
     (0, _image_search2.default)('gif ' + query).then(function (url) {
       return replyWith(url, res);
     }).catch(function (err) {
@@ -64,7 +64,7 @@ var respond = exports.respond = function respond(req, res) {
   }
 
   if (keyword === "!urban") {
-    var term = message.replace(RegExp(keyword + " "), "");
+    var term = message.replace(RegExp(keyword + ' '), "");
     urbanDict.search(term).then(function (definition) {
       return replyWith(definition, res);
     });
@@ -73,8 +73,6 @@ var respond = exports.respond = function respond(req, res) {
 
 var replyWith = function replyWith(body, res) {
   console.log("Replying with " + body);
-  res.writeHead(200, {
-    'Content-Type': 'application/json'
-  });
+  res.writeHead(200, { 'Content-Type': 'application/json' });
   res.end('{"text": "' + body + '", "unfurl_links": true}');
 };
