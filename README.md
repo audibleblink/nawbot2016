@@ -43,7 +43,10 @@ You'll also need to set up you Environment before testing.
 cp env .env
 ```
 
-and then fill in the variables
+and then fill in the variables.
+
+#### ECMAScript 2015
+The ES2015 code is in `./src`. The `gulp` buildsystem uses `babel` to transpile into ES5 syntax into the `./dist` directory. Once nodejs supports the ES2015 standard `./dist/` will go away and the app will run from `./src/` or some other hierarchy. Until then, run `gulp babel` in a separate terminal window. It will automatically detect file changes and transpile into the `./dist` directory.
 
 ## Testing
 
